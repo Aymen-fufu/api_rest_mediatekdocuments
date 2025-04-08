@@ -258,7 +258,7 @@ class MyAccessBDD extends AccessBDD {
 
     /**
      * récupère tous les exemplaires d'une revue
-     * @param array|null $champs 
+     * @param array|null $champs
      * @return array|null
      */
     private function selectExemplairesRevue(?array $champs) : ?array{

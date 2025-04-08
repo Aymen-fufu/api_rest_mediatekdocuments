@@ -21,6 +21,7 @@ abstract class AccessBDD {
     protected function __construct(){
         try{
             // récupération des variables d'environnement de l'accès à la BDD
+            $login = htmlspecialchars($_ENV['BDD_LOGIN'] ?? '');
             $pwd = htmlspecialchars($_ENV['BDD_PWD'] ?? '');
             $bd = htmlspecialchars($_ENV['BDD_BD'] ?? '');
             $server = htmlspecialchars($_ENV['BDD_SERVER'] ?? '');

@@ -108,12 +108,12 @@ class Url {
     private function basicAuthentification() : bool{
         // récupère les variables d'environnement de l'authentification
         $expectedUser = htmlspecialchars($_ENV['AUTH_USER'] ?? '');
-        $expectedPw = htmlspecialchars($_ENV['AUTH_PW'] ?? '');  
+        $expectedPw = htmlspecialchars($_ENV['AUTH_PW'] ?? '');
         // récupère les variables envoyées en 'basic auth'
         $authUser = htmlspecialchars($_SERVER['PHP_AUTH_USER'] ?? '');
-        $authPw = htmlspecialchars($_SERVER['PHP_AUTH_PW'] ?? '');    
+        $authPw = htmlspecialchars($_SERVER['PHP_AUTH_PW'] ?? '');
         // Contrôle si les valeurs d'authentification sont identiques
-        return ($authUser === $expectedUser && $authPw === $expectedPw) ;
+        return ($authUser === $expectedUser && $authPw === $expectedPw);
     }
     /**
      * récupération de toutes les variables envoyées par l'URL
@@ -130,7 +130,7 @@ class Url {
         }
         $input = file_get_contents('php://input');
         parse_str($input, $postData);
-        $data = array_merge($data, $postData);    
+        $data = array_merge($data, $postData);
         // htmlspeciachars appliqué à chaque valeur du tableau
         $data = array_map(function($value) {
             return htmlspecialchars($value, ENT_NOQUOTES);
