@@ -6,8 +6,8 @@
  * - récupère la méthode d'envoi HTTP (GET, POST, PUT, DELETE)
  * - demande au contrôleur de gérer la demande
  */
-include_once "Url.php";
-include_once "Controle.php";
+include_once ("Url.php");
+include_once("Controle.php");
 
 // crée l'objet d'accès aux informations de l'URL qui sollicite l'API
 $url = Url::getInstance();

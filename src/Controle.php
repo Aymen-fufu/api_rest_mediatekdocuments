@@ -1,8 +1,7 @@
 <?php
-
 header('Content-Type: application/json');
 
-include_once "MyAccessBDD.php";
+include_once("MyAccessBDD.php");
 
 /**
  * Contrôleur : reçoit et traite les demandes du point d'entrée
@@ -10,7 +9,7 @@ include_once "MyAccessBDD.php";
 class Controle{
 	
     /**
-     *
+     * 
      * @var MyAccessBDD
      */
     private $myAaccessBDD;
@@ -63,14 +62,11 @@ class Controle{
     private function controleResult(array|int|null $result) {
         if (!is_null($result)){
             $this->reponse(200, "OK", $result);
-        }else{
-            // Ajout de debug
-            var_dump($_POST);  // Pour voir les données reçues
-            var_dump($result); // Pour voir le résultat
+        }else{	
             $this->reponse(400, "requete invalide");
         }
     }
-	
+    
     /**
      * authentification incorrecte
      * demande d'afficher un messaage d'erreur

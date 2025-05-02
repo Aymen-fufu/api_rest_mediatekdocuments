@@ -9,19 +9,19 @@
 class Connexion {
 
     /**
-     *
+     * 
      * @var Connexion
      */
     private static $instance = null;
     /**
-     *
+     * 
      * @var \PDO
      */
     private $conn = null;
 
     /**
      * constructeur privé : connexion à la BDD
-     * @param string $login
+     * @param string $login 
      * @param string $pwd
      * @param string $bd
      * @param string $server
@@ -73,12 +73,48 @@ class Connexion {
     }
 
     /**
+     * Commence une transaction au niveau de la base de données
+     * @return bool True si la transaction a pu être commencée, sinon false
+     */
+    public function beginTransaction() : bool {
+        try {
+            return $this->conn->beginTransaction();
+        } catch (Exception $e) {
+            return false;
+        }
+    }
+
+    /**
+     * Exécute la transaction et persiste les changements dans la base de données
+     * @return bool True si la transaction a pu être exécutée, sinon false
+     */
+    public function commit() : bool {
+        try {
+            return $this->conn->commit();
+        } catch (Exception $e) {
+            return false;
+        }
+    }
+
+    /**
+     * Annule la transaction et rétablit les changements à l'état d'origine
+     * @return bool True si la transaction a pu être annulée, sinon false
+     */
+    public function rollback() : bool {
+        try {
+            return $this->conn->rollBack();
+        } catch (Exception $e) {
+            return false;
+        }
+    }
+
+    /**
      * exécute une requête select retournant 0 à plusieurs lignes
      * @param string $requete
      * @param array|null $param
      * @return array|null lignes récupérées ou null si erreur
      */
-    public function queryBDD(string $requete, ?array $param=null) : ?array{
+    public function queryBDD(string $requete, ?array $param=null) : ?array{     
         try{
             $result = $this->prepareRequete($requete, $param);
             $reponse = $result->execute();
@@ -86,7 +122,7 @@ class Connexion {
                 return $result->fetchAll(PDO::FETCH_ASSOC);
             }else{
                 return null;
-            }
+            } 
         }catch(Exception $e){
             return null;
         }
